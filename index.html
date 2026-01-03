@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Переводчик раскладки ENG ↔ RUS</title>
+    <title>Переводчик раскладки клавиатуры</title>
 
     <!-- Base64 иконка сайта -->
     <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0Ij48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiMxZTI5M2IiIHJ4PSIxMiIvPjxyZWN0IHg9IjEyIiB5PSIxMiIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjM2I4MmY2IiByeD0iOCIvPjxwYXRoIGQ9Ik0yNCAyNHYxNmgxNk0yNCAyNGgxME0yNCAzMmgxME0yNCA0MGgxMCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik00MCAyNHYxNk00MCAyNGg2YTQgNCAwIDAgMSAwIDhoLTZNNDAgMzJoNiIgc3Ryb2tlPSIjZWY0NDQ0IiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0zMiAxOGwtNC00bTQgNGw0LTRNMzIgNDZsLTQgNG00LTJsNCAyIiBzdHJva2U9IiM5NGEzYjgiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9zdmc+"
@@ -29,8 +29,8 @@
         }
         
         .container {
-            width: 100%;
-            max-width: 1500px;
+            width: 90%;
+            max-width: 1200px;
             background: #1e293b;
             border-radius: 12px;
             overflow: hidden;
@@ -38,108 +38,96 @@
         }
         
         .header {
-            padding: 30px;
+            padding: 25px;
             border-bottom: 1px solid #334155;
             text-align: center;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         }
         
         .header h1 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 600;
             color: #f8fafc;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
+            margin-bottom: 5px;
         }
         
         .header p {
             color: #94a3b8;
-            font-size: 1rem;
-            margin-top: 5px;
-        }
-        
-        .keyboard-icon {
-            font-size: 1.8rem;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+            font-size: 0.95rem;
         }
         
         .translator-container {
             display: flex;
             padding: 0;
-            min-height: 450px;
+            min-height: 400px;
         }
         
         @media (max-width: 768px) {
             .translator-container {
                 flex-direction: column;
             }
-            .header h1 {
-                font-size: 1.6rem;
+            .container {
+                width: 95%;
             }
         }
         
-        .language-box {
+        .input-box,
+        .output-box {
             flex: 1;
-            padding: 30px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
         }
         
-        .language-box:first-child {
+        .input-box {
             border-right: 1px solid #334155;
         }
         
         .language-header {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 12px;
+            margin-bottom: 20px;
             padding-bottom: 15px;
             border-bottom: 2px solid;
         }
         
-        .eng .language-header {
+        .input-box .language-header {
             border-color: #3b82f6;
         }
         
-        .rus .language-header {
+        .output-box .language-header {
             border-color: #ef4444;
         }
         
         .flag {
-            width: 45px;
-            height: 45px;
-            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
         
-        .eng .flag {
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        .input-box .flag {
+            background: #3b82f6;
         }
         
-        .rus .flag {
-            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        .output-box .flag {
+            background: #ef4444;
         }
         
         .language-title {
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 1.3rem;
+            font-weight: 500;
             color: #f1f5f9;
         }
         
         .layout-info {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #94a3b8;
-            margin-top: 4px;
         }
         
         textarea {
@@ -162,33 +150,30 @@
             border-color: #8b5cf6;
         }
         
-        .eng textarea:focus {
+        .input-box textarea:focus {
             border-color: #3b82f6;
         }
         
-        .rus textarea:focus {
+        .output-box textarea:focus {
             border-color: #ef4444;
         }
         
-        .char-count {
-            text-align: right;
-            color: #94a3b8;
-            font-size: 0.9rem;
-            margin-top: 10px;
+        #outputText {
+            background: #1a2536;
+            cursor: default;
         }
         
         .controls {
             display: flex;
             gap: 15px;
-            padding: 30px;
+            padding: 25px;
             border-top: 1px solid #334155;
             justify-content: center;
             flex-wrap: wrap;
-            background: rgba(15, 23, 42, 0.3);
         }
         
         .btn {
-            padding: 14px 28px;
+            padding: 12px 25px;
             border: none;
             border-radius: 8px;
             font-size: 1rem;
@@ -197,8 +182,8 @@
             transition: all 0.2s;
             display: flex;
             align-items: center;
-            gap: 10px;
-            min-width: 160px;
+            gap: 8px;
+            min-width: 140px;
             justify-content: center;
         }
         
@@ -209,7 +194,6 @@
         
         .btn-primary:hover {
             background: #7c3aed;
-            transform: translateY(-2px);
         }
         
         .btn-secondary {
@@ -219,7 +203,6 @@
         
         .btn-secondary:hover {
             background: #64748b;
-            transform: translateY(-2px);
         }
         
         .btn-paste {
@@ -229,11 +212,10 @@
         
         .btn-paste:hover {
             background: #059669;
-            transform: translateY(-2px);
         }
         
         .btn:active {
-            transform: translateY(0);
+            transform: translateY(1px);
         }
         
         .paste-notification {
@@ -242,13 +224,13 @@
             right: 20px;
             background: #10b981;
             color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
+            padding: 10px 20px;
+            border-radius: 6px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             display: none;
             animation: slideIn 0.3s ease;
             z-index: 1000;
-            font-weight: 500;
+            font-size: 0.9rem;
         }
         
         @keyframes slideIn {
@@ -261,75 +243,49 @@
                 opacity: 1;
             }
         }
-        
-        .footer {
-            padding: 20px;
-            text-align: center;
-            color: #64748b;
-            font-size: 0.9rem;
-            border-top: 1px solid #334155;
-        }
-        
-        .shortcut-hint {
-            background: rgba(139, 92, 246, 0.1);
-            padding: 8px 16px;
-            border-radius: 20px;
-            margin-top: 10px;
-            display: inline-block;
-            font-size: 0.85rem;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <div class="header">
-            <h1>
-                <span class="keyboard-icon">⌨️</span> Переводчик раскладки ENG ↔ RUS
-            </h1>
+            <h1>Переводчик раскладки клавиатуры</h1>
         </div>
 
         <div class="translator-container">
-            <!-- Английская коробка -->
-            <div class="language-box eng">
+            <!-- Поле ввода -->
+            <div class="input-box">
                 <div class="language-header">
-                    <div class="flag">ENG</div>
+                    <div class="flag">ВОД</div>
                     <div>
-                        <div class="language-title">Английский</div>
-                        <div class="layout-info">Раскладка QWERTY</div>
+                        <div class="language-title">Исходный текст</div>
+                        <div class="layout-info">Введите текст в любой раскладке</div>
                     </div>
                 </div>
 
-                <textarea id="engText" placeholder="Введите текст на английском или в английской раскладке..."></textarea>
-                <div class="char-count">
-                    Символов: <span id="engCharCount">0</span>
-                </div>
+                <textarea id="inputText" placeholder="Введите текст..." autofocus></textarea>
             </div>
 
-            <!-- Русская коробка -->
-            <div class="language-box rus">
+            <!-- Поле вывода -->
+            <div class="output-box">
                 <div class="language-header">
-                    <div class="flag">RUS</div>
+                    <div class="flag">ВЫД</div>
                     <div>
-                        <div class="language-title">Русский</div>
-                        <div class="layout-info">Раскладка ЙЦУКЕН</div>
+                        <div class="language-title">Результат перевода</div>
+                        <div class="layout-info">Автоматический перевод раскладки</div>
                     </div>
                 </div>
 
-                <textarea id="rusText" placeholder="Введите текст на русском или в русской раскладке..."></textarea>
-                <div class="char-count">
-                    Символов: <span id="rusCharCount">0</span>
-                </div>
+                <textarea id="outputText" placeholder="Здесь появится результат..." readonly></textarea>
             </div>
         </div>
 
         <div class="controls">
             <button class="btn btn-paste" id="pasteBtn">
-                📋 Вставить из буфера
+                📋 Вставить
             </button>
             <button class="btn btn-primary" id="swapBtn">
-                ↔ Обменять
+                ↔ Поменять
             </button>
             <button class="btn btn-secondary" id="clearBtn">
                 × Очистить
@@ -338,12 +294,13 @@
     </div>
 
     <div class="paste-notification" id="pasteNotification">
-        Текст вставлен в активное поле
+        Текст вставлен
     </div>
 
     <script>
         class LayoutTranslator {
             constructor() {
+                // Маппинг с английской на русскую раскладку
                 this.engToRus = {
                     'q': 'й',
                     'w': 'ц',
@@ -379,13 +336,6 @@
                     '.': 'ю',
                     '/': '.',
                     '`': 'ё',
-                    '&': '?',
-                    '@': '"',
-                    '#': '№',
-                    '$': ';',
-                    '^': ':',
-                    '~': 'Ё',
-
                     'Q': 'Й',
                     'W': 'Ц',
                     'E': 'У',
@@ -418,44 +368,84 @@
                     'M': 'Ь',
                     '<': 'Б',
                     '>': 'Ю',
-                    '?': ','
+                    '?': ',',
+                    '@': '"',
+                    '#': '№',
+                    '$': ';',
+                    '^': ':',
+                    '&': '?'
                 };
 
+                // Создаём обратный маппинг
                 this.rusToEng = {};
                 for (const [eng, rus] of Object.entries(this.engToRus)) {
                     this.rusToEng[rus] = eng;
                 }
             }
 
+            // Определяет, какая раскладка преобладает в тексте
             detectLayout(text) {
-                if (!text || text.trim().length === 0) return 'unknown';
-
-                const englishRegex = /[a-zA-Z]/;
-                const russianRegex = /[а-яА-ЯёЁ]/;
+                if (!text) return 'unknown';
 
                 let engCount = 0;
                 let rusCount = 0;
 
                 for (let char of text) {
-                    if (englishRegex.test(char)) engCount++;
-                    if (russianRegex.test(char)) rusCount++;
+                    if (this.engToRus[char] !== undefined) engCount++;
+                    if (this.rusToEng[char] !== undefined) rusCount++;
                 }
 
                 if (engCount > rusCount) return 'eng';
                 if (rusCount > engCount) return 'rus';
-                return 'unknown';
+                return 'mixed';
             }
 
-            translate(text, from, to) {
+            // Переводит текст в противоположную раскладку
+            translate(text) {
                 if (!text) return '';
 
-                if (from === to) return text;
-
-                const mapping = to === 'rus' ? this.engToRus : this.rusToEng;
+                const layout = this.detectLayout(text);
                 let result = '';
 
                 for (let char of text) {
-                    result += mapping[char] || char;
+                    if (layout === 'eng' && this.engToRus[char] !== undefined) {
+                        // Английские символы переводим в русские
+                        result += this.engToRus[char];
+                    } else if (layout === 'rus' && this.rusToEng[char] !== undefined) {
+                        // Русские символы переводим в английские
+                        result += this.rusToEng[char];
+                    } else {
+                        // Для смешанного текста или символов без перевода
+                        if (this.engToRus[char] !== undefined) {
+                            result += this.engToRus[char];
+                        } else if (this.rusToEng[char] !== undefined) {
+                            result += this.rusToEng[char];
+                        } else {
+                            result += char;
+                        }
+                    }
+                }
+
+                return result;
+            }
+
+            // Просто меняет раскладку на противоположную (инвертирует)
+            swap(text) {
+                if (!text) return '';
+
+                let result = '';
+
+                for (let char of text) {
+                    if (this.engToRus[char] !== undefined) {
+                        // Если символ есть в английской раскладке - переводим в русскую
+                        result += this.engToRus[char];
+                    } else if (this.rusToEng[char] !== undefined) {
+                        // Если символ есть в русской раскладке - переводим в английскую
+                        result += this.rusToEng[char];
+                    } else {
+                        // Оставляем как есть
+                        result += char;
+                    }
                 }
 
                 return result;
@@ -464,79 +454,28 @@
 
         // Инициализация
         const translator = new LayoutTranslator();
-        const engTextarea = document.getElementById('engText');
-        const rusTextarea = document.getElementById('rusText');
+        const inputTextarea = document.getElementById('inputText');
+        const outputTextarea = document.getElementById('outputText');
         const pasteBtn = document.getElementById('pasteBtn');
         const swapBtn = document.getElementById('swapBtn');
         const clearBtn = document.getElementById('clearBtn');
         const pasteNotification = document.getElementById('pasteNotification');
-        const engCharCount = document.getElementById('engCharCount');
-        const rusCharCount = document.getElementById('rusCharCount');
 
-        // Определение активного поля
-        let activeTextarea = engTextarea;
-        engTextarea.addEventListener('focus', () => activeTextarea = engTextarea);
-        rusTextarea.addEventListener('focus', () => activeTextarea = rusTextarea);
-
-        // Обновление счетчиков символов
-        function updateCharCount() {
-            engCharCount.textContent = engTextarea.value.length;
-            rusCharCount.textContent = rusTextarea.value.length;
+        // Функция обновления результата
+        function updateTranslation() {
+            const text = inputTextarea.value;
+            outputTextarea.value = translator.translate(text);
         }
 
-        // Перевод с английского на русский
-        function translateEngToRus() {
-            const text = engTextarea.value;
-            const layout = translator.detectLayout(text);
-
-            if (layout === 'eng') {
-                rusTextarea.value = translator.translate(text, 'eng', 'rus');
-            } else if (layout === 'rus') {
-                rusTextarea.value = translator.translate(text, 'eng', 'rus');
-            } else {
-                rusTextarea.value = translator.translate(text, 'eng', 'rus');
-            }
-
-            updateCharCount();
-        }
-
-        // Перевод с русского на английский
-        function translateRusToEng() {
-            const text = rusTextarea.value;
-            const layout = translator.detectLayout(text);
-
-            if (layout === 'rus') {
-                engTextarea.value = translator.translate(text, 'rus', 'eng');
-            } else if (layout === 'eng') {
-                engTextarea.value = translator.translate(text, 'rus', 'eng');
-            } else {
-                engTextarea.value = translator.translate(text, 'rus', 'eng');
-            }
-
-            updateCharCount();
-        }
-
-        // Вставка из буфера обмена
+        // Функция вставки из буфера обмена
         async function pasteFromClipboard() {
             try {
                 const text = await navigator.clipboard.readText();
 
-                if (activeTextarea) {
-                    // Определяем, в какое поле вставлять
-                    const isEngActive = activeTextarea === engTextarea;
-
-                    // Вставляем текст в активное поле
-                    activeTextarea.value = text;
-
-                    // Запускаем соответствующий перевод
-                    if (isEngActive) {
-                        translateEngToRus();
-                    } else {
-                        translateRusToEng();
-                    }
-
-                    // Показываем уведомление
-                    showNotification('Текст вставлен в активное поле');
+                if (text.trim()) {
+                    inputTextarea.value = text;
+                    updateTranslation();
+                    showNotification('Текст вставлен');
                 }
             } catch (err) {
                 console.error('Ошибка при чтении буфера обмена:', err);
@@ -544,55 +483,51 @@
             }
         }
 
-        // Показать уведомление
+        // Функция смены раскладки (инверсия)
+        function swapLayout() {
+            const currentOutput = outputTextarea.value;
+            if (currentOutput) {
+                inputTextarea.value = currentOutput;
+                updateTranslation();
+                showNotification('Раскладка поменяна');
+            }
+        }
+
+        // Функция очистки
+        function clearAll() {
+            inputTextarea.value = '';
+            outputTextarea.value = '';
+            inputTextarea.focus();
+            showNotification('Все поля очищены');
+        }
+
+        // Функция показа уведомления
         function showNotification(message) {
             pasteNotification.textContent = message;
             pasteNotification.style.display = 'block';
 
             setTimeout(() => {
                 pasteNotification.style.display = 'none';
-            }, 2000);
-        }
-
-        // Обмен содержимым между полями
-        function swapLayouts() {
-            const engText = engTextarea.value;
-            const rusText = rusTextarea.value;
-
-            engTextarea.value = translator.translate(rusText, 'rus', 'eng');
-            rusTextarea.value = translator.translate(engText, 'eng', 'rus');
-
-            updateCharCount();
-            showNotification('Раскладки обменяны');
-        }
-
-        // Очистка всех полей
-        function clearAll() {
-            engTextarea.value = '';
-            rusTextarea.value = '';
-            updateCharCount();
-            engTextarea.focus();
-            showNotification('Все поля очищены');
+            }, 1500);
         }
 
         // Обработчики событий
-        engTextarea.addEventListener('input', translateEngToRus);
-        rusTextarea.addEventListener('input', translateRusToEng);
+        inputTextarea.addEventListener('input', updateTranslation);
         pasteBtn.addEventListener('click', pasteFromClipboard);
-        swapBtn.addEventListener('click', swapLayouts);
+        swapBtn.addEventListener('click', swapLayout);
         clearBtn.addEventListener('click', clearAll);
 
         // Глобальный обработчик Ctrl+V
         document.addEventListener('keydown', (e) => {
-            if ((e.ctrlKey || e.metaKey) && e.key === 'v') {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'v' && document.activeElement !== inputTextarea) {
+                e.preventDefault();
                 pasteFromClipboard();
             }
         });
 
         // Инициализация при загрузке
         document.addEventListener('DOMContentLoaded', () => {
-            translateEngToRus();
-            engTextarea.focus();
+            updateTranslation();
         });
     </script>
 </body>
