@@ -29,7 +29,8 @@
         }
         
         .container {
-            width: 90%;
+            width: 80%;
+            /* Изменено с 90% на 80% */
             max-width: 1200px;
             background: #1e293b;
             border-radius: 12px;
@@ -58,7 +59,9 @@
         .translator-container {
             display: flex;
             padding: 0;
-            min-height: 400px;
+            min-height: 500px;
+            /* Увеличена минимальная высота */
+            background-color: #334155;
         }
         
         @media (max-width: 768px) {
@@ -79,7 +82,8 @@
         }
         
         .input-box {
-            border-right: 1px solid #334155;
+            border-right: 3px solid #4a5568;
+            /* Более заметный border */
         }
         
         .language-header {
@@ -133,6 +137,8 @@
         textarea {
             width: 100%;
             flex: 1;
+            min-height: 300px;
+            /* Добавлена минимальная высота */
             padding: 20px;
             background: #0f172a;
             border: 1px solid #334155;
@@ -140,7 +146,8 @@
             color: #f8fafc;
             font-size: 16px;
             line-height: 1.5;
-            resize: none;
+            resize: vertical;
+            /* Разрешаем вертикальное изменение размера */
             font-family: 'Consolas', 'Monaco', monospace;
             transition: border-color 0.2s;
         }
@@ -249,7 +256,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Переводчик раскладки клавиатуры</h1>
+            <h1>⌨️ Переводчик раскладки ENG ↔ RUS</h1>
         </div>
 
         <div class="translator-container">
