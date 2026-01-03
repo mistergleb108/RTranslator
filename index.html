@@ -30,7 +30,7 @@
         
         .container {
             width: 100%;
-            max-width: 80%;
+            max-width: 1500px;
             background: #1e293b;
             border-radius: 12px;
             overflow: hidden;
@@ -302,6 +302,9 @@
                 </div>
 
                 <textarea id="engText" placeholder="Введите текст на английском или в английской раскладке..."></textarea>
+                <div class="char-count">
+                    Символов: <span id="engCharCount">0</span>
+                </div>
             </div>
 
             <!-- Русская коробка -->
@@ -315,24 +318,26 @@
                 </div>
 
                 <textarea id="rusText" placeholder="Введите текст на русском или в русской раскладке..."></textarea>
+                <div class="char-count">
+                    Символов: <span id="rusCharCount">0</span>
+                </div>
             </div>
         </div>
-        <p style="color:#64748b;margin-left:20px;margin-bottom:5px;">Символов: <span id="rusCharCount ">0</span></p>
-        <div class="controls ">
-            <button class="btn btn-paste " id="pasteBtn ">
+
+        <div class="controls">
+            <button class="btn btn-paste" id="pasteBtn">
                 📋 Вставить из буфера
             </button>
-            <button class="btn btn-primary " id="swapBtn ">
+            <button class="btn btn-primary" id="swapBtn">
                 ↔ Обменять
             </button>
-            <button class="btn btn-secondary " id="clearBtn ">
+            <button class="btn btn-secondary" id="clearBtn">
                 × Очистить
             </button>
         </div>
-
     </div>
 
-    <div class="paste-notification " id="pasteNotification ">
+    <div class="paste-notification" id="pasteNotification">
         Текст вставлен в активное поле
     </div>
 
@@ -362,20 +367,20 @@
                     'k': 'л',
                     'l': 'д',
                     ';': 'ж',
-                    " '": 'э ',
-                    'z ': 'я ',
-                    'x ': 'ч ',
-                    'c ': 'с ',
-                    'v ': 'м ',
-                    'b ': 'и ',
-                    'n ': 'т ',
-                    'm ': 'ь ',
-                    ', ': 'б ',
-                    '. ': 'ю ',
-                    '/ ': '. ',
-                    '` ': 'ё ',
-                    '& ': '? ',
-                    '@ ': ' "',
+                    "'": 'э',
+                    'z': 'я',
+                    'x': 'ч',
+                    'c': 'с',
+                    'v': 'м',
+                    'b': 'и',
+                    'n': 'т',
+                    'm': 'ь',
+                    ',': 'б',
+                    '.': 'ю',
+                    '/': '.',
+                    '`': 'ё',
+                    '&': '?',
+                    '@': '"',
                     '#': '№',
                     '$': ';',
                     '^': ':',
@@ -403,58 +408,87 @@
                     'K': 'Л',
                     'L': 'Д',
                     ':': 'Ж',
-                    '" ': 'Э ',
-                    'Z ': 'Я ',
-                    'X ': 'Ч ',
-                    'C ': 'С ',
-                    'V ': 'М ',
-                    'B ': 'И ',
-                    'N ': 'Т ',
-                    'M ': 'Ь ',
-                    '< ': 'Б ',
+                    '"': 'Э',
+                    'Z': 'Я',
+                    'X': 'Ч',
+                    'C': 'С',
+                    'V': 'М',
+                    'B': 'И',
+                    'N': 'Т',
+                    'M': 'Ь',
+                    '<': 'Б',
                     '>': 'Ю',
                     '?': ','
                 };
+
                 this.rusToEng = {};
                 for (const [eng, rus] of Object.entries(this.engToRus)) {
                     this.rusToEng[rus] = eng;
                 }
             }
+
             detectLayout(text) {
                 if (!text || text.trim().length === 0) return 'unknown';
+
                 const englishRegex = /[a-zA-Z]/;
-                const
-                    russianRegex = /[а-яА-ЯёЁ]/;
+                const russianRegex = /[а-яА-ЯёЁ]/;
+
                 let engCount = 0;
                 let rusCount = 0;
+
                 for (let char of text) {
                     if (englishRegex.test(char)) engCount++;
                     if (russianRegex.test(char)) rusCount++;
                 }
+
                 if (engCount > rusCount) return 'eng';
                 if (rusCount > engCount) return 'rus';
                 return 'unknown';
             }
+
             translate(text, from, to) {
                 if (!text) return '';
+
                 if (from === to) return text;
+
                 const mapping = to === 'rus' ? this.engToRus : this.rusToEng;
                 let result = '';
+
                 for (let char of text) {
                     result += mapping[char] || char;
                 }
+
                 return result;
             }
-        } // Инициализация const translator = new LayoutTranslator(); const engTextarea = document.getElementById('engText'); const rusTextarea = document.getElementById('rusText'); const pasteBtn = document.getElementById('pasteBtn');
+        }
+
+        // Инициализация
+        const translator = new LayoutTranslator();
+        const engTextarea = document.getElementById('engText');
+        const rusTextarea = document.getElementById('rusText');
+        const pasteBtn = document.getElementById('pasteBtn');
         const swapBtn = document.getElementById('swapBtn');
         const clearBtn = document.getElementById('clearBtn');
         const pasteNotification = document.getElementById('pasteNotification');
         const engCharCount = document.getElementById('engCharCount');
-        const rusCharCount = document.getElementById('rusCharCount'); // Определение активного поля let activeTextarea = engTextarea; engTextarea.addEventListener('focus', () => activeTextarea = engTextarea); rusTextarea.addEventListener('focus',
-        () => activeTextarea = rusTextarea); // Обновление счетчиков символов function updateCharCount() { engCharCount.textContent = engTextarea.value.length; rusCharCount.textContent = rusTextarea.value.length; } // Перевод с английского на русский
+        const rusCharCount = document.getElementById('rusCharCount');
+
+        // Определение активного поля
+        let activeTextarea = engTextarea;
+        engTextarea.addEventListener('focus', () => activeTextarea = engTextarea);
+        rusTextarea.addEventListener('focus', () => activeTextarea = rusTextarea);
+
+        // Обновление счетчиков символов
+        function updateCharCount() {
+            engCharCount.textContent = engTextarea.value.length;
+            rusCharCount.textContent = rusTextarea.value.length;
+        }
+
+        // Перевод с английского на русский
         function translateEngToRus() {
             const text = engTextarea.value;
             const layout = translator.detectLayout(text);
+
             if (layout === 'eng') {
                 rusTextarea.value = translator.translate(text, 'eng', 'rus');
             } else if (layout === 'rus') {
@@ -462,59 +496,104 @@
             } else {
                 rusTextarea.value = translator.translate(text, 'eng', 'rus');
             }
+
             updateCharCount();
-        } // Перевод с русского на английский function translateRusToEng() { const text = rusTextarea.value; const
-        layout = translator.detectLayout(text);
-        if (layout === 'rus') {
-            engTextarea.value = translator.translate(text, 'rus', 'eng');
-        } else if (layout === 'eng') {
-            engTextarea.value = translator.translate(text, 'rus', 'eng');
-        } else {
-            engTextarea.value = translator.translate(text, 'rus', 'eng');
         }
-        updateCharCount();
-        } // Вставка из буфера обмена async function pasteFromClipboard() { try { const text = await navigator.clipboard.readText(); if (activeTextarea) { // Определяем, в какое поле
-        вставлять
-        const isEngActive = activeTextarea === engTextarea; // Вставляем текст в активное поле activeTextarea.value = text; // Запускаем соответствующий перевод if (isEngActive) { translateEngToRus(); } else { translateRusToEng(); } // Показываем
-        уведомление showNotification('Текст вставлен в активное поле');
+
+        // Перевод с русского на английский
+        function translateRusToEng() {
+            const text = rusTextarea.value;
+            const layout = translator.detectLayout(text);
+
+            if (layout === 'rus') {
+                engTextarea.value = translator.translate(text, 'rus', 'eng');
+            } else if (layout === 'eng') {
+                engTextarea.value = translator.translate(text, 'rus', 'eng');
+            } else {
+                engTextarea.value = translator.translate(text, 'rus', 'eng');
+            }
+
+            updateCharCount();
         }
-        }
-        catch (err) {
-            console.error('Ошибка при чтении буфера обмена:', err);
-            showNotification('Не удалось получить доступ к буферу обмена');
-        }
-        } // Показать уведомление function
-        showNotification(message) {
-                pasteNotification.textContent = message;
-                pasteNotification.style.display = 'block';
-                setTimeout(() => {
-                    pasteNotification.style.display = 'none';
-                }, 2000);
-            } // Обмен содержимым между полями function swapLayouts()
-            {
-                const engText = engTextarea.value;
-                const rusText = rusTextarea.value;
-                engTextarea.value = translator.translate(rusText, 'rus', 'eng');
-                rusTextarea.value = translator.translate(engText, 'eng', 'rus');
-                updateCharCount();
-                showNotification('Раскладки
-                    обменяны '); } // Очистка всех полей function clearAll() { engTextarea.value = '
-                    '; rusTextarea.value = '
-                    '; updateCharCount(); engTextarea.focus(); showNotification('
-                    Все поля очищены '); } // Обработчики событий engTextarea.addEventListener('
-                    input ',
-                    translateEngToRus);
-                rusTextarea.addEventListener('input', translateRusToEng);
-                pasteBtn.addEventListener('click', pasteFromClipboard);
-                swapBtn.addEventListener('click', swapLayouts);
-                clearBtn.addEventListener('click', clearAll); // Глобальный
-                обработчик Ctrl + V document.addEventListener('keydown', (e) => {
-                    if ((e.ctrlKey || e.metaKey) && e.key === 'v') {
-                        pasteFromClipboard();
+
+        // Вставка из буфера обмена
+        async function pasteFromClipboard() {
+            try {
+                const text = await navigator.clipboard.readText();
+
+                if (activeTextarea) {
+                    // Определяем, в какое поле вставлять
+                    const isEngActive = activeTextarea === engTextarea;
+
+                    // Вставляем текст в активное поле
+                    activeTextarea.value = text;
+
+                    // Запускаем соответствующий перевод
+                    if (isEngActive) {
+                        translateEngToRus();
+                    } else {
+                        translateRusToEng();
                     }
-                }); // Инициализация при загрузке document.addEventListener('DOMContentLoaded', () => { translateEngToRus();
-                engTextarea.focus();
-            });
+
+                    // Показываем уведомление
+                    showNotification('Текст вставлен в активное поле');
+                }
+            } catch (err) {
+                console.error('Ошибка при чтении буфера обмена:', err);
+                showNotification('Не удалось получить доступ к буферу обмена');
+            }
+        }
+
+        // Показать уведомление
+        function showNotification(message) {
+            pasteNotification.textContent = message;
+            pasteNotification.style.display = 'block';
+
+            setTimeout(() => {
+                pasteNotification.style.display = 'none';
+            }, 2000);
+        }
+
+        // Обмен содержимым между полями
+        function swapLayouts() {
+            const engText = engTextarea.value;
+            const rusText = rusTextarea.value;
+
+            engTextarea.value = translator.translate(rusText, 'rus', 'eng');
+            rusTextarea.value = translator.translate(engText, 'eng', 'rus');
+
+            updateCharCount();
+            showNotification('Раскладки обменяны');
+        }
+
+        // Очистка всех полей
+        function clearAll() {
+            engTextarea.value = '';
+            rusTextarea.value = '';
+            updateCharCount();
+            engTextarea.focus();
+            showNotification('Все поля очищены');
+        }
+
+        // Обработчики событий
+        engTextarea.addEventListener('input', translateEngToRus);
+        rusTextarea.addEventListener('input', translateRusToEng);
+        pasteBtn.addEventListener('click', pasteFromClipboard);
+        swapBtn.addEventListener('click', swapLayouts);
+        clearBtn.addEventListener('click', clearAll);
+
+        // Глобальный обработчик Ctrl+V
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'v') {
+                pasteFromClipboard();
+            }
+        });
+
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', () => {
+            translateEngToRus();
+            engTextarea.focus();
+        });
     </script>
 </body>
 
