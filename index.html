@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Переводчик раскладки</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .header {
+            padding: 25px;
+            border-bottom: 1px solid #334155;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #f8fafc;
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+        
+        .translator-container {
+            display: flex;
+            padding: 0;
+            min-height: 400px;
+        }
+        
+        @media (max-width: 768px) {
+            .translator-container {
+                flex-direction: column;
+            }
+        }
+        
+        .language-box {
+            flex: 1;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .language-box:first-child {
+            border-right: 1px solid #334155;
+        }
+        
+        .language-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid;
+        }
+        
+        .eng .language-header {
+            border-color: #3b82f6;
+        }
+        
+        .rus .language-header {
+            border-color: #ef4444;
+        }
+        
+        .flag {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: white;
+        }
+        
+        .eng .flag {
+            background: #3b82f6;
+        }
+        
+        .rus .flag {
+            background: #ef4444;
+        }
+        
+        .language-title {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #f1f5f9;
+        }
+        
+        .layout-info {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+        
+        textarea {
+            width: 100%;
+            flex: 1;
+            padding: 20px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #f8fafc;
+            font-size: 16px;
+            line-height: 1.5;
+            resize: none;
+            font-family: 'Consolas', 'Monaco', monospace;
+            transition: border-color 0.2s;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #8b5cf6;
+        }
+        
+        .eng textarea:focus {
+            border-color: #3b82f6;
+        }
+        
+        .rus textarea:focus {
+            border-color: #ef4444;
+        }
+        
+        .char-count {
+            text-align: right;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 15px;
+            padding: 25px;
+            border-top: 1px solid #334155;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: #8b5cf6;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #7c3aed;
+        }
+        
+        .btn-secondary {
+            background: #475569;
+            color: #e2e8f0;
+        }
+        
+        .btn-secondary:hover {
+            background: #64748b;
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .examples {
+            padding: 25px;
+            border-top: 1px solid #334155;
+            background: rgba(15, 23, 42, 0.5);
+        }
+        
+        .examples h3 {
+            color: #f1f5f9;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+        }
+        
+        .example-item {
+            background: #1e293b;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .example-item:hover {
+            border-color: #8b5cf6;
+            background: #2d3748;
+        }
+        
+        .example-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .example-eng {
+            color: #60a5fa;
+            font-family: 'Consolas', monospace;
+            font-weight: 500;
+        }
+        
+        .example-rus {
+            color: #f87171;
+            font-family: 'Consolas', monospace;
+            font-weight: 500;
+        }
+        
+        .example-desc {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Переводчик раскладки ENG ↔ RUS</h1>
+        </div>
+
+        <div class="translator-container">
+            <!-- Английская коробка -->
+            <div class="language-box eng">
+                <div class="language-header">
+                    <div class="flag">ENG</div>
+                    <div>
+                        <div class="language-title">Английский</div>
+                        <div class="layout-info">Раскладка QWERTY</div>
+                    </div>
+                </div>
+
+                <textarea id="engText" placeholder="Введите текст на английском или в английской раскладке...">hello world</textarea>
+                <div class="char-count">
+
+                </div>
+            </div>
+
+            <!-- Русская коробка -->
+            <div class="language-box rus">
+                <div class="language-header">
+                    <div class="flag">RUS</div>
+                    <div>
+                        <div class="language-title">Русский</div>
+                        <div class="layout-info">Раскладка ЙЦУКЕН</div>
+                    </div>
+                </div>
+
+                <textarea id="rusText" placeholder="Введите текст на русском или в русской раскладке...">руддщ цщкдв</textarea>
+                <div class="char-count">
+                    Символов: <span id="rusCharCount">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-primary" id="swapBtn">
+                ↔ Поменять
+            </button>
+            <button class="btn btn-secondary" id="clearBtn">
+                × Очистить
+            </button>
+        </div>
+
+        <script>
+            class LayoutTranslator {
+                constructor() {
+                    this.engToRus = {
+                        'q': 'й',
+                        'w': 'ц',
+                        'e': 'у',
+                        'r': 'к',
+                        't': 'е',
+                        'y': 'н',
+                        'u': 'г',
+                        'i': 'ш',
+                        'o': 'щ',
+                        'p': 'з',
+                        '[': 'х',
+                        ']': 'ъ',
+                        'a': 'ф',
+                        's': 'ы',
+                        'd': 'в',
+                        'f': 'а',
+                        'g': 'п',
+                        'h': 'р',
+                        'j': 'о',
+                        'k': 'л',
+                        'l': 'д',
+                        ';': 'ж',
+                        "'": 'э',
+                        'z': 'я',
+                        'x': 'ч',
+                        'c': 'с',
+                        'v': 'м',
+                        'b': 'и',
+                        'n': 'т',
+                        'm': 'ь',
+                        ',': 'б',
+                        '.': 'ю',
+                        '/': '.',
+                        '`': 'ё',
+                        '&': '?',
+                        '@': '"',
+                        '#': '№',
+                        '$': ';',
+                        '^': ':',
+                        '~': 'Ё',
+
+                        'Q': 'Й',
+                        'W': 'Ц',
+                        'E': 'У',
+                        'R': 'К',
+                        'T': 'Е',
+                        'Y': 'Н',
+                        'U': 'Г',
+                        'I': 'Ш',
+                        'O': 'Щ',
+                        'P': 'З',
+                        '{': 'Х',
+                        '}': 'Ъ',
+                        'A': 'Ф',
+                        'S': 'Ы',
+                        'D': 'В',
+                        'F': 'А',
+                        'G': 'П',
+                        'H': 'Р',
+                        'J': 'О',
+                        'K': 'Л',
+                        'L': 'Д',
+                        ':': 'Ж',
+                        '"': 'Э',
+                        'Z': 'Я',
+                        'X': 'Ч',
+                        'C': 'С',
+                        'V': 'М',
+                        'B': 'И',
+                        'N': 'Т',
+                        'M': 'Ь',
+                        '<': 'Б',
+                        '>': 'Ю',
+                        '?': ','
+                    };
+
+                    this.rusToEng = {};
+                    for (const [eng, rus] of Object.entries(this.engToRus)) {
+                        this.rusToEng[rus] = eng;
+                    }
+                }
+
+                detectLayout(text) {
+                    if (!text || text.trim().length === 0) return 'unknown';
+
+                    const englishRegex = /[a-zA-Z]/;
+                    const russianRegex = /[а-яА-ЯёЁ]/;
+
+                    let engCount = 0;
+                    let rusCount = 0;
+
+                    for (let char of text) {
+                        if (englishRegex.test(char)) engCount++;
+                        if (russianRegex.test(char)) rusCount++;
+                    }
+
+                    if (engCount > rusCount) return 'eng';
+                    if (rusCount > engCount) return 'rus';
+                    return 'unknown';
+                }
+
+                translate(text, from, to) {
+                    if (!text) return '';
+
+                    if (from === to) return text;
+
+                    const mapping = to === 'rus' ? this.engToRus : this.rusToEng;
+                    let result = '';
+
+                    for (let char of text) {
+                        result += mapping[char] || char;
+                    }
+
+                    return result;
+                }
+            }
+
+            // Инициализация
+            const translator = new LayoutTranslator();
+            const engTextarea = document.getElementById('engText');
+            const rusTextarea = document.getElementById('rusText');
+            const swapBtn = document.getElementById('swapBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const engCharCount = document.getElementById('engCharCount');
+            const rusCharCount = document.getElementById('rusCharCount');
+            const exampleItems = document.querySelectorAll('.example-item');
+
+            // Обновление счетчиков символов
+            function updateCharCount() {
+                engCharCount.textContent = engTextarea.value.length;
+                rusCharCount.textContent = rusTextarea.value.length;
+            }
+
+            // Перевод с английского на русский
+            function translateEngToRus() {
+                const text = engTextarea.value;
+                const layout = translator.detectLayout(text);
+
+                if (layout === 'eng') {
+                    // Если текст на английском языке, переводим раскладку
+                    rusTextarea.value = translator.translate(text, 'eng', 'rus');
+                } else if (layout === 'rus') {
+                    // Если текст на русском языке, но на английской раскладке
+                    rusTextarea.value = translator.translate(text, 'eng', 'rus');
+                } else {
+                    // Для смешанного или неизвестного текста
+                    rusTextarea.value = translator.translate(text, 'eng', 'rus');
+                }
+
+                updateCharCount();
+            }
+
+            // Перевод с русского на английский
+            function translateRusToEng() {
+                const text = rusTextarea.value;
+                const layout = translator.detectLayout(text);
+
+                if (layout === 'rus') {
+                    // Если текст на русском языке, переводим раскладку
+                    engTextarea.value = translator.translate(text, 'rus', 'eng');
+                } else if (layout === 'eng') {
+                    // Если текст на английском языке, но на русской раскладке
+                    engTextarea.value = translator.translate(text, 'rus', 'eng');
+                } else {
+                    // Для смешанного или неизвестного текста
+                    engTextarea.value = translator.translate(text, 'rus', 'eng');
+                }
+
+                updateCharCount();
+            }
+
+            // Обмен содержимым между полями
+            function swapLayouts() {
+                const engText = engTextarea.value;
+                const rusText = rusTextarea.value;
+
+                // Переводим оба текста в противоположную раскладку
+                engTextarea.value = translator.translate(rusText, 'rus', 'eng');
+                rusTextarea.value = translator.translate(engText, 'eng', 'rus');
+
+                updateCharCount();
+            }
+
+            // Очистка всех полей
+            function clearAll() {
+                engTextarea.value = '';
+                rusTextarea.value = '';
+                updateCharCount();
+            }
+
+            // Заполнение примерами
+            function fillExample(engExample, rusExample) {
+                engTextarea.value = engExample;
+                rusTextarea.value = rusExample;
+                updateCharCount();
+            }
+
+            // События
+            engTextarea.addEventListener('input', translateEngToRus);
+            rusTextarea.addEventListener('input', translateRusToEng);
+            swapBtn.addEventListener('click', swapLayouts);
+            clearBtn.addEventListener('click', clearAll);
+
+            // Добавляем обработчики для примеров
+            exampleItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const engExample = item.dataset.eng;
+                    const rusExample = item.dataset.rus;
+                    fillExample(engExample, rusExample);
+                });
+            });
+
+            // Инициализация при загрузке
+            document.addEventListener('DOMContentLoaded', () => {
+                translateEngToRus();
+                engTextarea.focus();
+            });
+        </script>
+</body>
+
+</html>
