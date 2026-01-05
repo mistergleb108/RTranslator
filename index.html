@@ -5,10 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Переводчик раскладки клавиатуры</title>
-
-    <!-- Base64 иконка сайта -->
-    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0Ij48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiMxZTI5M2IiIHJ4PSIxMiIvPjxyZWN0IHg9IjEyIiB5PSIxMiIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjM2I4MmY2IiByeD0iOCIvPjxwYXRoIGQ9Ik0yNCAyNHYxNmgxNk0yNCAyNGgxME0yNCAzMmgxME0yNCA0MGgxMCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik00MCAyNHYxNk00MCAyNGg2YTQgNCAwIDAgMSAwIDhoLTZNNDAgMzJoNiIgc3Ryb2tlPSIjZWY0NDQ0IiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0zMiAxOGwtNC00bTQgNGw0LTRNMzIgNDZsLTQgNG00LTJsNCAyIiBzdHJva2U9IiM5NGEzYjgiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9zdmc+"
-        type="image/svg+xml">
+    <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAU8SURBVHhe7ZvPb9tkGMe/tuMkTvOjaxFrN3WFDgnaiZTDTmwFunaVmIBurNPgsHGGG+yAxB+AuKBxQdpxGpoqrUwdaBoTdOXHNsFhF1KNDrQOrag/dujWNGkcx7HNoXWI3ziOX9u0TdyP9Ert94mV9/nmfZ/3TfyagQV7ug9opFaPzE7fZkhNxzTQKImTmBlRITRq8jqkCYZ/Gj15nXITSn/4JXkd3QSWDPgNBj789HVmp28zvh8BvjeA8evw1/H9CGBVpUhqvkFViu6nQLC1G01dQwjEO8En9oALJciXeIoipSGnZ1FMP8Tq39+jsDRNvoQKxwYwbBCx5GnEnx8Bw3Jk2JSB9t/BQcEvj/Yhr4YMsTAr4ZW2uyiqHCYXew2xamiqgsy9MaSnzgOqQoZt4agG8M1d2Pn6OSS6T9pOHgB4RkFrOIvBXSkInFTSBU7C4K4UWkNZ8KxquMYKhuUQ73kHO4e+BN/cRYZt4ciASGc/+HgHKdfkp8V9yMgCYryIgfYUwqyEMCthoD2FGC8iIwv4ebGHvKwmwR17EensJ2VbUE+B4FM9eHrwLBiHeyiBk3CoPYU4LyIjhwEAMT6PFVnA5EISomKcGnbRNBWPrr8PefkBGbKEOoumZw47Th4ARCWEyYUkVmQBMT7vSfIAwDAsos+9Sco1oc6E37GXlKjRTUgXIkgXIq6T1wkk6KcltQEBB3PfDFEJ4drcflyb2+9J8gAQiNH3jdoALhglpS1DQGghpZpQG9BoUK8CHe/+QEr49sMwYkLFz4umZEQNb53NkzIA4Kvf3kO0mCVlqGBR4ILIBGJY5hP4+KXPoFX+nAkA+Gf0MClZ4tqAq2fCaI6Yd6YayzkNb3xuNOHir6eQkNMGrRoyyyOgFnH84BgKbNAQozXA9RRoCtElDwCcybtGlBwpVYVXZQDA5VsnwGr2d45mmHTFHbJi3XKShqNVpkA5MsuXmsJwVYd8OQyoBjPgxRT48RMB/PrXAVkB+j8VDXG7jN86XvpkZZbHsYOXyZcAAL65eQycppQMGe4bh1q2MdvwKbDRDPeNk5Ir6s4Ar6kbAxhtbaZeufk2GXKFpzUA63XAimr7gPIagPU6oMNqKlhNNRS5LVsDeM66tUQZXD2z9jXYCl6VS43TFEcV3g6eG2AHrvaKZonCrA25kQOXDJ++E9xdbQK57pMtJ2k4+kXlFCDR9wAamIp28uVRDPeNQ+Lcf4v0tAZsxD6gFpteA+qNbQNIwW94WgPg0T6grmsAue6TrSXKYPSD2vuAjcJzA+zAbsq7muO6Kx9dlCrWequWkzScPlc5BcY6Rkpr/1jHCBn+33BdA7Yam14D6g1qA4riY1JyhMBJOLL7Do7svmO4U+wGJ32jNkB+MkNK1Og3SBPBHBLBHA61G2+XO8VJ3+gNWKZ/k3LIu8MZOYw4L3pigpO+URuwOnMdmvLfDxc06GcB1pIXMDHfi4n5XmRkAfGyMwNOUGURqzPfkXJNqA0oZuewPHWBlG3xatsfpYMQNxaSyKsh5NUQbiwkSwcnXmu7S15mi/TUeRSz86RcE2oDACB77xIKj++Tck1klcWSFMXEvPF2uKiEMDGfxFI+Clmzf+RGp/DkPrJ/XSFlW1DvA3QYNoj4i6cQe+EE1TkhL9FUBSt/fo1M6gI0tUCGbeHYAJ1gazeanh1CILHBx+RWHmL1wSYek2sEVKXorAY0CiwX8LcBcLoKNArbD0z4fQQAPn5maPupsXV8+dyg6YOT8IkJlo/OosFNIJOHmQE6jWSEWeI6/wKWaT73dQ98ZAAAAABJRU5ErkJggg==">
 
     <style>
         * {
@@ -23,6 +20,7 @@
             color: #e2e8f0;
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 20px;
@@ -30,9 +28,8 @@
         
         .container {
             width: 80%;
-            /* Изменено с 90% на 80% */
             max-width: 1200px;
-            background: #1e293b;
+            background: #1a2536;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -56,11 +53,85 @@
             font-size: 0.95rem;
         }
         
+        .footer {
+            border-top: 1px solid #334155;
+            text-align: center;
+            background: #223141;
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            gap: 15px;
+            padding: 4px 0;
+        }
+        
+        .footer-info {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .footer-buttons {
+            display: flex;
+            gap: 5px;
+            flex-wrap: left;
+            justify-content: left;
+            border: 0;
+        }
+        
+        .btn-download-script {
+            padding: 10px 20px;
+            border: 0px solid #475569;
+            border-radius: 6px;
+            background: transparent;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-family: inherit;
+            min-width: 200px;
+            justify-content: center;
+        }
+        
+        .btn-download-script:hover {
+            background: rgba(148, 163, 184, 0.1);
+            border-color: #64748b;
+            color: #cbd5e1;
+        }
+        /* Новый контейнер для кнопок над полями */
+        
+        .quick-controls {
+            display: flex;
+            gap: 15px;
+            padding: 20px 25px;
+            border-bottom: 1px solid #334155;
+            background: #223141;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .quick-controls .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 120px;
+            justify-content: center;
+        }
+        
         .translator-container {
             display: flex;
             padding: 0;
             min-height: 500px;
-            /* Увеличена минимальная высота */
             background-color: #334155;
         }
         
@@ -70,6 +141,20 @@
             }
             .container {
                 width: 95%;
+            }
+            .quick-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .quick-controls .btn {
+                width: 100%;
+            }
+            .footer-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn-download-script {
+                width: 100%;
             }
         }
         
@@ -83,7 +168,6 @@
         
         .input-box {
             border-right: 3px solid #4a5568;
-            /* Более заметный border */
         }
         
         .language-header {
@@ -138,7 +222,6 @@
             width: 100%;
             flex: 1;
             min-height: 300px;
-            /* Добавлена минимальная высота */
             padding: 20px;
             background: #0f172a;
             border: 1px solid #334155;
@@ -147,7 +230,6 @@
             font-size: 16px;
             line-height: 1.5;
             resize: vertical;
-            /* Разрешаем вертикальное изменение размера */
             font-family: 'Consolas', 'Monaco', monospace;
             transition: border-color 0.2s;
         }
@@ -168,15 +250,6 @@
         #outputText {
             background: #1a2536;
             cursor: default;
-        }
-        
-        .controls {
-            display: flex;
-            gap: 15px;
-            padding: 25px;
-            border-top: 1px solid #334155;
-            justify-content: center;
-            flex-wrap: wrap;
         }
         
         .btn {
@@ -259,6 +332,19 @@
             <h1>⌨️ Переводчик раскладки ENG ↔ RUS</h1>
         </div>
 
+        <!-- Быстрые кнопки над полями -->
+        <div class="quick-controls">
+            <button class="btn btn-paste" id="quickPasteBtn">
+                📋 Вставить текст
+            </button>
+            <button class="btn btn-primary" id="quickSwapBtn">
+                ↔ Поменять местами
+            </button>
+            <button class="btn btn-secondary" id="quickClearBtn">
+                × Очистить все
+            </button>
+        </div>
+
         <div class="translator-container">
             <!-- Поле ввода -->
             <div class="input-box">
@@ -287,16 +373,13 @@
             </div>
         </div>
 
-        <div class="controls">
-            <button class="btn btn-paste" id="pasteBtn">
-                📋 Вставить
-            </button>
-            <button class="btn btn-primary" id="swapBtn">
-                ↔ Поменять
-            </button>
-            <button class="btn btn-secondary" id="clearBtn">
-                × Очистить
-            </button>
+        <!-- Футер с кнопкой скачивания скрипта -->
+        <div class="footer">
+            <div class="footer-buttons">
+                <button class="btn-download-script" id="downloadScriptBtn">
+                    ⬇ Скачать скрипт для TamperMonkey
+                </button>
+            </div>
         </div>
     </div>
 
@@ -307,7 +390,6 @@
     <script>
         class LayoutTranslator {
             constructor() {
-                // Маппинг с английской на русскую раскладку
                 this.engToRus = {
                     'q': 'й',
                     'w': 'ц',
@@ -383,14 +465,12 @@
                     '&': '?'
                 };
 
-                // Создаём обратный маппинг
                 this.rusToEng = {};
                 for (const [eng, rus] of Object.entries(this.engToRus)) {
                     this.rusToEng[rus] = eng;
                 }
             }
 
-            // Определяет, какая раскладка преобладает в тексте
             detectLayout(text) {
                 if (!text) return 'unknown';
 
@@ -407,7 +487,6 @@
                 return 'mixed';
             }
 
-            // Переводит текст в противоположную раскладку
             translate(text) {
                 if (!text) return '';
 
@@ -416,13 +495,10 @@
 
                 for (let char of text) {
                     if (layout === 'eng' && this.engToRus[char] !== undefined) {
-                        // Английские символы переводим в русские
                         result += this.engToRus[char];
                     } else if (layout === 'rus' && this.rusToEng[char] !== undefined) {
-                        // Русские символы переводим в английские
                         result += this.rusToEng[char];
                     } else {
-                        // Для смешанного текста или символов без перевода
                         if (this.engToRus[char] !== undefined) {
                             result += this.engToRus[char];
                         } else if (this.rusToEng[char] !== undefined) {
@@ -436,7 +512,6 @@
                 return result;
             }
 
-            // Просто меняет раскладку на противоположную (инвертирует)
             swap(text) {
                 if (!text) return '';
 
@@ -444,13 +519,10 @@
 
                 for (let char of text) {
                     if (this.engToRus[char] !== undefined) {
-                        // Если символ есть в английской раскладке - переводим в русскую
                         result += this.engToRus[char];
                     } else if (this.rusToEng[char] !== undefined) {
-                        // Если символ есть в русской раскладке - переводим в английскую
                         result += this.rusToEng[char];
                     } else {
-                        // Оставляем как есть
                         result += char;
                     }
                 }
@@ -459,22 +531,21 @@
             }
         }
 
-        // Инициализация
         const translator = new LayoutTranslator();
         const inputTextarea = document.getElementById('inputText');
         const outputTextarea = document.getElementById('outputText');
-        const pasteBtn = document.getElementById('pasteBtn');
-        const swapBtn = document.getElementById('swapBtn');
-        const clearBtn = document.getElementById('clearBtn');
+        const quickPasteBtn = document.getElementById('quickPasteBtn');
+        const quickSwapBtn = document.getElementById('quickSwapBtn');
+        const quickClearBtn = document.getElementById('quickClearBtn');
+        const downloadScriptBtn = document.getElementById('downloadScriptBtn');
+        const copyPageLinkBtn = document.getElementById('copyPageLinkBtn');
         const pasteNotification = document.getElementById('pasteNotification');
 
-        // Функция обновления результата
         function updateTranslation() {
             const text = inputTextarea.value;
             outputTextarea.value = translator.translate(text);
         }
 
-        // Функция вставки из буфера обмена
         async function pasteFromClipboard() {
             try {
                 const text = await navigator.clipboard.readText();
@@ -490,7 +561,6 @@
             }
         }
 
-        // Функция смены раскладки (инверсия)
         function swapLayout() {
             const currentOutput = outputTextarea.value;
             if (currentOutput) {
@@ -500,7 +570,6 @@
             }
         }
 
-        // Функция очистки
         function clearAll() {
             inputTextarea.value = '';
             outputTextarea.value = '';
@@ -508,7 +577,28 @@
             showNotification('Все поля очищены');
         }
 
-        // Функция показа уведомления
+        function downloadTampermonkeyScript() {
+            const link = document.createElement('a');
+            link.href = 'Переводчик раскладки.user.js';
+            link.download = 'Переводчик раскладки.user.js';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showNotification('Скрипт скачивается...');
+        }
+
+        function copyPageLink() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url)
+                .then(() => {
+                    showNotification('Ссылка скопирована в буфер обмена');
+                })
+                .catch(err => {
+                    console.error('Ошибка при копировании ссылки:', err);
+                    showNotification('Не удалось скопировать ссылку');
+                });
+        }
+
         function showNotification(message) {
             pasteNotification.textContent = message;
             pasteNotification.style.display = 'block';
@@ -518,13 +608,15 @@
             }, 1500);
         }
 
-        // Обработчики событий
         inputTextarea.addEventListener('input', updateTranslation);
-        pasteBtn.addEventListener('click', pasteFromClipboard);
-        swapBtn.addEventListener('click', swapLayout);
-        clearBtn.addEventListener('click', clearAll);
 
-        // Глобальный обработчик Ctrl+V
+        quickPasteBtn.addEventListener('click', pasteFromClipboard);
+        quickSwapBtn.addEventListener('click', swapLayout);
+        quickClearBtn.addEventListener('click', clearAll);
+
+        downloadScriptBtn.addEventListener('click', downloadTampermonkeyScript);
+        copyPageLinkBtn.addEventListener('click', copyPageLink);
+
         document.addEventListener('keydown', (e) => {
             if ((e.ctrlKey || e.metaKey) && e.key === 'v' && document.activeElement !== inputTextarea) {
                 e.preventDefault();
@@ -532,7 +624,6 @@
             }
         });
 
-        // Инициализация при загрузке
         document.addEventListener('DOMContentLoaded', () => {
             updateTranslation();
         });
